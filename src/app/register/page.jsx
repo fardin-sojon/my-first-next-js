@@ -3,10 +3,12 @@
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
-import useAuth from "@/app/hooks/useAuth"; // AuthProvider থেকে
+import { useRouter } from "next/navigation"; 
+import useAuth from "@/app/hooks/useAuth";
 
 export default function RegisterForm() {
   const { registerUser, googleLogin, updateUserProfile } = useAuth();
+  const router = useRouter(); 
   const {
     register,
     handleSubmit,
@@ -19,6 +21,7 @@ export default function RegisterForm() {
       await updateUserProfile(data.name, data.image);
 
       console.log("User registered:", userCredential.user);
+      router.push("/"); 
     } catch (error) {
       console.error(error.message);
     }
@@ -28,6 +31,7 @@ export default function RegisterForm() {
     try {
       const result = await googleLogin();
       console.log("Google user:", result.user);
+      router.push("/"); 
     } catch (error) {
       console.error(error.message);
     }

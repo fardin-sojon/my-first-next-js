@@ -26,7 +26,7 @@ export default function LoginForm() {
       const result = await loginUser(email, password);
 
       toast.success("Login Successful!");
-      router.push("/"); // redirect
+      router.push("/"); 
     } catch (error) {
       toast.error(error.message);
     }

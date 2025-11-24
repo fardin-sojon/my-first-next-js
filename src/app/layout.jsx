@@ -28,7 +28,7 @@ export default function RootLayout({ children }) {
         <AuthProvider>
           <div className="min-h-screen flex flex-col">
             <Navber></Navber>
-            <div className="flex-1 bg-gradient-to-r from-blue-100 to-indigo-200">
+            <div className="flex-1  pb-10">
               {children}
             </div>
             <Footer></Footer>

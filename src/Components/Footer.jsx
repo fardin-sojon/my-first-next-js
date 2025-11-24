@@ -3,7 +3,7 @@ import React from "react";
 export default function Footer() {
   return (
     <div>
-      <footer className="bg-gray-100 text-gray-700 p-10 mt-16">
+      <footer className="bg-gray-100 text-gray-700 p-10">
         <div className="container mx-auto footer sm:footer-horizontal">
           {/* Services */}
           <nav>
