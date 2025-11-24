@@ -1,18 +1,46 @@
 "use client";
+
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
 
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
+import useAuth from "../hooks/useAuth";
+
 export default function LoginForm() {
+  const { loginUser, googleLogin } = useAuth();
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log("Form data:", data);
-    // এখানে Firebase auth বা অন্য logic add করা যাবে
+  // Email + Password Login
+  const onSubmit = async (data) => {
+    try {
+      const { email, password } = data;
+
+      const result = await loginUser(email, password);
+
+      toast.success("Login Successful!");
+      router.push("/"); // redirect
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
+
+  // Google Login
+  const handleGoogleLogin = async () => {
+    try {
+      await googleLogin();
+      toast.success("Google Login Successful!");
+      router.push("/");
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
 
   return (
@@ -23,7 +51,10 @@ export default function LoginForm() {
         </h2>
 
         {/* Google Login Button */}
-        <button className="w-full bg-blue-600 flex items-center justify-center gap-4 text-white font-semibold py-3 rounded-lg shadow-lg hover:bg-red-600 hover:shadow-xl transition mb-6">
+        <button
+          onClick={handleGoogleLogin}
+          className="w-full bg-blue-600 flex items-center justify-center gap-4 text-white font-semibold py-3 rounded-lg shadow-lg hover:bg-red-600 hover:shadow-xl transition mb-6"
+        >
           <span className="bg-white rounded-full">
             <FcGoogle size={26} />
           </span>

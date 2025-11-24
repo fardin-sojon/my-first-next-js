@@ -1,17 +1,36 @@
 "use client";
+
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
+import useAuth from "@/app/hooks/useAuth"; // AuthProvider থেকে
 
 export default function RegisterForm() {
+  const { registerUser, googleLogin, updateUserProfile } = useAuth();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    try {
+      const userCredential = await registerUser(data.email, data.password);
+      await updateUserProfile(data.name, data.image);
+
+      console.log("User registered:", userCredential.user);
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
+  const handleGoogleLogin = async () => {
+    try {
+      const result = await googleLogin();
+      console.log("Google user:", result.user);
+    } catch (error) {
+      console.error(error.message);
+    }
   };
 
   return (
@@ -21,8 +40,11 @@ export default function RegisterForm() {
           Register
         </h2>
 
-        {/* Google Login Button */}
-        <button className="w-full bg-blue-600 flex items-center justify-center gap-4 text-white font-semibold py-3 rounded-lg shadow-lg hover:bg-red-600 hover:shadow-xl transition mb-4">
+        {/* Google Login */}
+        <button
+          onClick={handleGoogleLogin}
+          className="w-full bg-blue-600 flex items-center justify-center gap-4 text-white font-semibold py-3 rounded-lg shadow-lg hover:bg-red-600 hover:shadow-xl transition mb-4"
+        >
           <span className="bg-white rounded-full">
             <FcGoogle size={26} />
           </span>
@@ -39,9 +61,7 @@ export default function RegisterForm() {
               {...register("name", { required: "Name is required" })}
               className="w-full border-2 border-gray-300 rounded-lg px-3 py-2 placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-300 transition"
             />
-            {errors.name && (
-              <span className="text-red-500 text-sm mt-1">{errors.name.message}</span>
-            )}
+            {errors.name && <span className="text-red-500 text-sm mt-1">{errors.name.message}</span>}
           </div>
 
           {/* Email */}
@@ -53,9 +73,7 @@ export default function RegisterForm() {
               {...register("email", { required: "Email is required" })}
               className="w-full border-2 border-gray-300 rounded-lg px-3 py-2 placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-300 transition"
             />
-            {errors.email && (
-              <span className="text-red-500 text-sm mt-1">{errors.email.message}</span>
-            )}
+            {errors.email && <span className="text-red-500 text-sm mt-1">{errors.email.message}</span>}
           </div>
 
           {/* Password */}
@@ -70,9 +88,7 @@ export default function RegisterForm() {
               })}
               className="w-full border-2 border-gray-300 rounded-lg px-3 py-2 placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-300 transition"
             />
-            {errors.password && (
-              <span className="text-red-500 text-sm mt-1">{errors.password.message}</span>
-            )}
+            {errors.password && <span className="text-red-500 text-sm mt-1">{errors.password.message}</span>}
           </div>
 
           {/* Profile Image */}

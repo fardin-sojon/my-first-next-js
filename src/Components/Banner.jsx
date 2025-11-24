@@ -8,7 +8,7 @@ import BannerImg from "../../public/asserts/banner-prodects.png"
 export default function Banner() {
   return (
     <section className="py-20">
-      <div className=" px-4 text-center lg:text-left flex flex-col md:flex-row items-center justify-between container mx-auto xl:w-[70%]">
+      <div className=" px-4 text-center lg:text-left flex flex-col md:flex-row items-center justify-between container mx-auto">
         
         {/* Left Content */}
         <div className="lg:w-1/2 mb-10 lg:mb-0">
