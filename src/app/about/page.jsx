@@ -1,12 +1,13 @@
 "use client";
 
+import TeamMember from "@/Components/TeamMember";
 import Image from "next/image";
 import React from "react";
 
 export default function About() {
   return (
     <div className="container mx-auto py-14 px-5 space-y-20">
-      {/* 🌟 Section 1 — Hero / Intro */}
+      {/* Our Company */}
       <section className="text-center max-w-3xl mx-auto">
         <h1 className="text-4xl font-extrabold text-indigo-700">
           About Our Company
@@ -17,7 +18,7 @@ export default function About() {
         </p>
       </section>
 
-      {/* 🌟 Section 2 — Who We Are */}
+      {/* Who We Are */}
       <section className="grid md:grid-cols-2 gap-12 items-center">
         {/* Left Text */}
         <div>
@@ -44,6 +45,10 @@ export default function About() {
             className="object-cover rounded-2xl"
           />
         </div>
+      </section>
+      {/* Our Team */}
+      <section>
+        <TeamMember/>
       </section>
     </div>
   );

@@ -1,7 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["lh3.googleusercontent.com", "i.ibb.co"],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**',    // যেকোনো host
+        port: '',          // empty
+        pathname: '/**',   // যেকোনো path
+      },
+    ],
   },
 };
 

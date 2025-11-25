@@ -18,7 +18,7 @@ export default function ProductCard({ product }) {
         <p className="text-gray-600 mb-2">{product.shortDesc}</p>
         <p className="font-bold mb-4">${product.price}</p>
         <Link
-          href={`/items/${product.id}`}
+          href={`/items/${product._id}`}
           className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
         >
           View Details

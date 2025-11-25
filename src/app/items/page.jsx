@@ -9,9 +9,11 @@ export default function ItemsPage() {
   const [category, setCategory] = useState("all");
 
   useEffect(() => {
-    fetch("/products.json")
+    // API থেকে MongoDB data fetch
+    fetch("/api/items")
       .then((res) => res.json())
-      .then((data) => setProducts(data));
+      .then((data) => setProducts(data))
+      .catch((err) => console.error(err));
   }, []);
 
   const categories = ["all", ...new Set(products.map((p) => p.category))];
@@ -26,7 +28,7 @@ export default function ItemsPage() {
     <div className="container mx-auto my-10 px-5">
       <h2 className="text-3xl font-bold text-center my-10">All Products</h2>
 
-      {/* Search + Category inline */}
+      {/* Search + Category */}
       <div className="flex flex-col md:flex-row gap-4 justify-center mb-10 items-center">
         <input
           type="text"
@@ -52,7 +54,7 @@ export default function ItemsPage() {
       <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
         {filteredProducts.length > 0 ? (
           filteredProducts.map((product) => (
-            <ProductCard key={product.id} product={product} />
+            <ProductCard key={product._id} product={product} />
           ))
         ) : (
           <p className="text-center col-span-full text-gray-500">

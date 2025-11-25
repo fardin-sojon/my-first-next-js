@@ -5,8 +5,8 @@ import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
 
 import { useRouter } from "next/navigation";
-import { toast } from "react-toastify";
 import useAuth from "../hooks/useAuth";
+import toast from "react-hot-toast";
 
 export default function LoginForm() {
   const { loginUser, googleLogin } = useAuth();

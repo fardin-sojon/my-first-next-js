@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
 import { useRouter } from "next/navigation"; 
 import useAuth from "@/app/hooks/useAuth";
+import toast from "react-hot-toast";
 
 export default function RegisterForm() {
   const { registerUser, googleLogin, updateUserProfile } = useAuth();
@@ -19,8 +20,8 @@ export default function RegisterForm() {
     try {
       const userCredential = await registerUser(data.email, data.password);
       await updateUserProfile(data.name, data.image);
-
       console.log("User registered:", userCredential.user);
+      toast.success('Register successful!')
       router.push("/"); 
     } catch (error) {
       console.error(error.message);

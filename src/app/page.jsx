@@ -3,16 +3,17 @@
 import Banner from "@/components/Banner";
 import Features from "@/components/Features";
 import ProductCard from "@/components/ProductCard";
-import TeamMember from "@/components/TeamMember";
 import { useEffect, useState } from "react";
 
 export default function Home() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch("/products.json")
+    // Client-side fetch latest 3 items
+    fetch("/api/items?latest=3")
       .then((res) => res.json())
-      .then((data) => setProducts(data));
+      .then((data) => setProducts(data))
+      .catch((err) => console.error("Failed to fetch products:", err));
   }, []);
 
   return (
@@ -20,17 +21,14 @@ export default function Home() {
       <main className="container mx-auto space-y-8">
         <Banner />
         <section className="py-16 px-8">
-          <h2 className="text-3xl font-bold mb-10 text-left">Top Products</h2>
+          <h2 className="text-3xl font-bold mb-10 text-left">Latest Products</h2>
           <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
-            {products
-              .filter((p) => p.priority === "high")
-              .map((product) => (
-                <ProductCard key={product.id} product={product} />
-              ))}
+            {products.map((product) => (
+              <ProductCard key={product._id} product={product} />
+            ))}
           </div>
         </section>
         <Features />
-        <TeamMember />
       </main>
     </div>
   );

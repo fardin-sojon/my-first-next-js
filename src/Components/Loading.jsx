@@ -13,14 +13,7 @@ export default function Loading() {
     return () => clearTimeout(timer);
   }, []);
 
-  if (!showLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center text-3xl font-bold text-green-600">
-        Loaded Successfully!
-      </div>
-    );
-  }
-
+  
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100">
       {/* Spinner */}
