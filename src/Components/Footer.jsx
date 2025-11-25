@@ -1,65 +1,91 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
+import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from "react-icons/fa";
+import { toast } from "react-hot-toast";
 
 export default function Footer() {
+  const [email, setEmail] = useState("");
+
+  const handleSubscribe = (e) => {
+    e.preventDefault();
+    if (!email) return toast.error("Please enter your email!");
+    toast.success("Subscribed successfully!");
+    setEmail("");
+  };
+
   return (
-    <div>
-      <footer className="bg-gray-100 text-gray-700 p-10">
-        <div className="container mx-auto footer sm:footer-horizontal">
-          {/* Services */}
-          <nav>
-            <h6 className="footer-title text-blue-600 font-bold">Services</h6>
-            <a className="link link-hover hover:text-blue-600">Branding</a>
-            <a className="link link-hover hover:text-blue-600">Design</a>
-            <a className="link link-hover hover:text-blue-600">Marketing</a>
-            <a className="link link-hover hover:text-blue-600">Advertisement</a>
-          </nav>
+    <footer className="bg-blue-50 text-gray-700 py-12 px-5">
+      <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+        {/* Services */}
+        <div>
+          <h6 className="text-blue-600 font-bold mb-3">Services</h6>
+          <ul className="space-y-1 text-sm">
+            <li className="hover:text-blue-700 transition cursor-pointer">Branding</li>
+            <li className="hover:text-blue-700 transition cursor-pointer">Design</li>
+            <li className="hover:text-blue-700 transition cursor-pointer">Marketing</li>
+            <li className="hover:text-blue-700 transition cursor-pointer">Advertisement</li>
+          </ul>
+        </div>
 
-          {/* Company */}
-          <nav>
-            <h6 className="footer-title text-blue-600 font-bold">Company</h6>
-            <a className="link link-hover hover:text-blue-600">About us</a>
-            <a className="link link-hover hover:text-blue-600">Contact</a>
-            <a className="link link-hover hover:text-blue-600">Jobs</a>
-            <a className="link link-hover hover:text-blue-600">Press kit</a>
-          </nav>
+        {/* Company */}
+        <div>
+          <h6 className="text-blue-600 font-bold mb-3">Company</h6>
+          <ul className="space-y-1 text-sm">
+            <li className="hover:text-blue-700 transition cursor-pointer">About Us</li>
+            <li className="hover:text-blue-700 transition cursor-pointer">Contact</li>
+            <li className="hover:text-blue-700 transition cursor-pointer">Jobs</li>
+            <li className="hover:text-blue-700 transition cursor-pointer">Press Kit</li>
+          </ul>
+        </div>
 
-          {/* Legal */}
-          <nav>
-            <h6 className="footer-title text-blue-600 font-bold">Legal</h6>
-            <a className="link link-hover hover:text-blue-600">Terms of use</a>
-            <a className="link link-hover hover:text-blue-600">
-              Privacy policy
-            </a>
-            <a className="link link-hover hover:text-blue-600">Cookie policy</a>
-          </nav>
+        {/* Legal */}
+        <div>
+          <h6 className="text-blue-600 font-bold mb-3">Legal</h6>
+          <ul className="space-y-1 text-sm">
+            <li className="hover:text-blue-700 transition cursor-pointer">Terms of Use</li>
+            <li className="hover:text-blue-700 transition cursor-pointer">Privacy Policy</li>
+            <li className="hover:text-blue-700 transition cursor-pointer">Cookie Policy</li>
+          </ul>
+        </div>
 
-          {/* Newsletter */}
-          <form>
-            <h6 className="footer-title text-blue-600 font-bold">Newsletter</h6>
-            <fieldset className="w-80">
-              <label className="text-gray-600">Enter your email address</label>
-              <div className="join mt-2">
-                <input
-                  type="text"
-                  placeholder="username@gmail.com"
-                  className="input join-item bg-gray-100 border-2 border-blue-500 text-blue-600 focus:border-blue-700"
-                />
-
-                <button className="btn bg-blue-600 border-none text-white hover:bg-blue-700 join-item">
-                  Subscribe
-                </button>
-              </div>
-            </fieldset>
+        {/* Newsletter */}
+        <div>
+          <h6 className="text-blue-600 font-bold mb-3">Newsletter</h6>
+          <p className="text-sm text-gray-600 mb-2">
+            Subscribe for latest updates.
+          </p>
+          <form onSubmit={handleSubscribe} className="flex gap-2">
+            <input
+              type="email"
+              placeholder="youremail@gmail.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="px-3 py-2 rounded-lg border border-blue-400 focus:outline-none focus:border-blue-600 flex-1"
+            />
+            <button
+              type="submit"
+              className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
+            >
+              Subscribe
+            </button>
           </form>
-        </div>
 
-        {/* Footer Bottom */}
-        <div className="mt-10 text-center text-gray-500 text-sm">
-          © {new Date().getFullYear()}{" "}
-          <span className="text-blue-600 font-semibold">ShopEase</span> — All
-          rights reserved.
+          {/* Social Icons */}
+          <div className="flex gap-4 mt-4 text-blue-600 text-lg">
+            <FaFacebookF className="hover:text-blue-800 transition cursor-pointer" />
+            <FaTwitter className="hover:text-blue-800 transition cursor-pointer" />
+            <FaInstagram className="hover:text-blue-800 transition cursor-pointer" />
+            <FaLinkedinIn className="hover:text-blue-800 transition cursor-pointer" />
+          </div>
         </div>
-      </footer>
-    </div>
+      </div>
+
+      {/* Footer Bottom */}
+      <div className="mt-12 border-t border-gray-300 pt-6 text-center text-gray-500 text-sm">
+        © {new Date().getFullYear()}{" "}
+        <span className="text-blue-600 font-semibold">ShopEase</span> — All rights reserved.
+      </div>
+    </footer>
   );
 }

@@ -31,7 +31,7 @@ export default function Navbar() {
 
         {/* LEFT */}
         <div className="navbar-start">
-          {/* Mobile dropdown */}
+          {/* dropdown */}
           <div className="dropdown">
             <button
               onClick={() => setMenuOpen(!menuOpen)}
@@ -53,7 +53,7 @@ export default function Navbar() {
           <Link href="/" className="text-2xl font-bold text-blue-600 ml-2">ShopEase</Link>
         </div>
 
-        {/* CENTER - Desktop Menu */}
+        {/* CENTER  Menu */}
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{links}</ul>
         </div>
@@ -62,7 +62,6 @@ export default function Navbar() {
         <div className="navbar-end lg:flex gap-2">
           {user ? (
             <div className="dropdown dropdown-end">
-              {/* Hover trigger */}
               <label
                 tabIndex={0}
                 className="flex items-center gap-2 border-2 rounded-full border-blue-500 hover:bg-gray-100 cursor-pointer"
@@ -82,7 +81,7 @@ export default function Navbar() {
                 )}
               </label>
 
-              {/* Dropdown content */}
+              {/* Dropdown */}
               <ul
                 tabIndex={0}
                 className="dropdown-content menu border-t-3 border-blue-600 p-2 shadow bg-white rounded-box w-56 mt-2 text-blue-600 hover:shadow-lg"

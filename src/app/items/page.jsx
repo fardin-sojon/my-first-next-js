@@ -9,7 +9,6 @@ export default function ItemsPage() {
   const [category, setCategory] = useState("all");
 
   useEffect(() => {
-    // API থেকে MongoDB data fetch
     fetch("/api/items")
       .then((res) => res.json())
       .then((data) => setProducts(data))
@@ -50,7 +49,7 @@ export default function ItemsPage() {
         </select>
       </div>
 
-      {/* Products Grid */}
+      {/* Products*/}
       <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
         {filteredProducts.length > 0 ? (
           filteredProducts.map((product) => (

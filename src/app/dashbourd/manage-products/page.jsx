@@ -12,13 +12,10 @@ export default function ManageProduct() {
   const { user } = useAuth();
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [view, setView] = useState("table"); // 👈 default view
+  const [view, setView] = useState("table"); 
 
   // Fetching
   const fetchProducts = async () => {
-    if (!user?.email) return;
-    setLoading(true);
-
     try {
       const res = await fetch("/api/items");
       const data = await res.json();
@@ -30,7 +27,7 @@ export default function ManageProduct() {
     }
   };
 
-  // DELETE Handler with SweetAlert
+  // DELETE 
   const handleDelete = async (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -58,7 +55,7 @@ export default function ManageProduct() {
 
   useEffect(() => {
     fetchProducts();
-  }, [user]);
+  }, [user,fetchProducts]);
 
   if (loading) return <Loading />;
   if (!products.length)

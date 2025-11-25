@@ -44,7 +44,7 @@ export default function AddProduct() {
         body: JSON.stringify(payload),
       });
 
-      reset(); // ফর্ম ক্লিয়ার হবে
+      reset(); 
     } catch (err) {
       console.error(err);
     }

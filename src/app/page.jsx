@@ -9,7 +9,6 @@ export default function Home() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    // Client-side fetch latest 3 items
     fetch("/api/items?latest=3")
       .then((res) => res.json())
       .then((data) => setProducts(data))

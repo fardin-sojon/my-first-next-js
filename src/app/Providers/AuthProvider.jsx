@@ -26,13 +26,13 @@ export default function AuthProvider({ children }) {
     return signInWithPopup(auth, googleProvider);
   };
 
-  /* Email + Pass Register */
+  /* Register */
   const registerUser = (email, password) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
-  /* Email + Pass Login */
+  /* Login */
   const loginUser = (email, password) => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
@@ -54,7 +54,6 @@ export default function AuthProvider({ children }) {
     return signOut(auth);
   };
 
-  /* All Values Provide */
   const authInfo = {
     user,
     loading,
@@ -67,7 +66,6 @@ export default function AuthProvider({ children }) {
 
   /* Auth State */
   useEffect(() => {
-    setLoading(true)
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       setLoading(false);
 
