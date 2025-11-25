@@ -3,7 +3,6 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import BannerImg from "../../public/asserts/banner-prodects.png"
 
 export default function Banner() {
   return (
@@ -37,7 +36,7 @@ export default function Banner() {
         {/* Right Image */}
         <div className="lg:w-1/2 flex justify-center lg:justify-end">
           <Image
-            src={BannerImg}
+            src="/images/banner-prodects.png"
             alt="Banner"
             width={600}  
             height={400}

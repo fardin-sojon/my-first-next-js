@@ -26,7 +26,7 @@ export default function TeamMember() {
         {teamMembers.map((member, index) => (
           <div
             key={index}
-            className="p-6 border rounded-lg shadow hover:shadow-lg transition bg-white"
+            className="p-6 border-2 border-blue-500  rounded-lg shadow hover:shadow-lg transition bg-white"
           >
             <div className="w-32 h-32 mx-auto mb-4 relative">
               <Image
