@@ -20,21 +20,23 @@ export default function RegisterForm() {
     try {
       const userCredential = await registerUser(data.email, data.password);
       await updateUserProfile(data.name, data.image);
-      console.log("User registered:", userCredential.user);
+      // console.log("User registered:", userCredential.user);
       toast.success('Register successful!')
       router.push("/"); 
     } catch (error) {
-      console.error(error.message);
+      // console.error(error.message);
+      toast.success(error.message)
     }
   };
 
   const handleGoogleLogin = async () => {
     try {
       const result = await googleLogin();
-      console.log("Google user:", result.user);
+      // console.log("Google user:", result.user);
       router.push("/"); 
     } catch (error) {
-      console.error(error.message);
+      // console.error(error.message);
+       toast.success(error.message)
     }
   };
 

@@ -1,5 +1,5 @@
 "use client";
-import Protected from "@/Components/Protected";
+import Protected from "@/components/Protected";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import useAuth from "@/app/hooks/useAuth";
@@ -12,23 +12,25 @@ export default function AddProduct() {
   const rating = watch("rating") || 0;
 
   const categories = [
-  "Electronics",
-  "Digital Art",
-  "Painting",
-  "Photography",
-  "Sculpture",
-  "Fashion",
-  "Books",
-  "Sports ",
-  "Toys",
-  "Digital Products",
-  "Gadgets",
-];
+    "Electronics",
+    "Digital Art",
+    "Painting",
+    "Photography",
+    "Sculpture",
+    "Fashion",
+    "Books",
+    "Sports ",
+    "Toys",
+    "Digital Products",
+    "Gadgets",
+  ];
   const priorities = ["high", "medium", "low"];
 
   const onSubmit = async (data) => {
     try {
-      const tagsArray = data.tags ? data.tags.split(",").map((t) => t.trim()) : [];
+      const tagsArray = data.tags
+        ? data.tags.split(",").map((t) => t.trim())
+        : [];
       const payload = {
         ...data,
         tags: tagsArray,
@@ -44,9 +46,9 @@ export default function AddProduct() {
         body: JSON.stringify(payload),
       });
 
-      reset(); 
+      reset();
     } catch (err) {
-      console.error(err);
+      // console.error(err);
     }
   };
 
@@ -58,24 +60,62 @@ export default function AddProduct() {
           onSubmit={handleSubmit(onSubmit)}
           className="max-w-3xl mx-auto space-y-6 bg-white p-8 rounded-3xl shadow-2xl border border-gray-200"
         >
-          <input type="text" placeholder="Title" {...register("title", { required: true })} className="w-full border px-4 py-2 rounded-lg focus:ring-2 focus:ring-blue-400" />
-          <input type="text" placeholder="Short Description" {...register("shortDesc", { required: true })} className="w-full border px-4 py-2 rounded-lg focus:ring-2 focus:ring-blue-400" />
-          <textarea placeholder="Description" {...register("description", { required: true })} className="w-full border px-4 py-2 rounded-lg focus:ring-2 focus:ring-blue-400" />
+          <input
+            type="text"
+            placeholder="Title"
+            {...register("title", { required: true })}
+            className="w-full border px-4 py-2 rounded-lg focus:ring-2 focus:ring-blue-400"
+          />
+          <input
+            type="text"
+            placeholder="Short Description"
+            {...register("shortDesc", { required: true })}
+            className="w-full border px-4 py-2 rounded-lg focus:ring-2 focus:ring-blue-400"
+          />
+          <textarea
+            placeholder="Description"
+            {...register("description", { required: true })}
+            className="w-full border px-4 py-2 rounded-lg focus:ring-2 focus:ring-blue-400"
+          />
 
           <div className="grid grid-cols-2 gap-4">
-            <input type="number" step="0.01" placeholder="Price" {...register("price", { required: true })} className="border px-4 py-2 rounded-lg focus:ring-2 focus:ring-blue-400" />
-            <input type="number" placeholder="Stock" {...register("stock", { required: true })} className="border px-4 py-2 rounded-lg focus:ring-2 focus:ring-blue-400" />
+            <input
+              type="number"
+              step="0.01"
+              placeholder="Price"
+              {...register("price", { required: true })}
+              className="border px-4 py-2 rounded-lg focus:ring-2 focus:ring-blue-400"
+            />
+            <input
+              type="number"
+              placeholder="Stock"
+              {...register("stock", { required: true })}
+              className="border px-4 py-2 rounded-lg focus:ring-2 focus:ring-blue-400"
+            />
           </div>
 
-          <input type="text" placeholder="Image URL" {...register("image", { required: true })} className="w-full border px-4 py-2 rounded-lg focus:ring-2 focus:ring-blue-400" />
+          <input
+            type="text"
+            placeholder="Image URL"
+            {...register("image", { required: true })}
+            className="w-full border px-4 py-2 rounded-lg focus:ring-2 focus:ring-blue-400"
+          />
 
           {/* Category Select */}
           <div>
             <p className="mb-2 font-semibold">Category:</p>
-            <select {...register("category", { required: true })} className="w-full border px-4 py-2 rounded-lg focus:ring-2 focus:ring-blue-400" defaultValue="">
-              <option value="" disabled>Select Category</option>
+            <select
+              {...register("category", { required: true })}
+              className="w-full border px-4 py-2 rounded-lg focus:ring-2 focus:ring-blue-400"
+              defaultValue=""
+            >
+              <option value="" disabled>
+                Select Category
+              </option>
               {categories.map((cat) => (
-                <option key={cat} value={cat}>{cat}</option>
+                <option key={cat} value={cat}>
+                  {cat}
+                </option>
               ))}
             </select>
           </div>
@@ -110,7 +150,9 @@ export default function AddProduct() {
                   key={i}
                   size={24}
                   className={`cursor-pointer transition ${
-                    i <= (ratingHover || rating) ? "text-yellow-400" : "text-gray-300"
+                    i <= (ratingHover || rating)
+                      ? "text-yellow-400"
+                      : "text-gray-300"
                   }`}
                   onMouseEnter={() => setRatingHover(i)}
                   onMouseLeave={() => setRatingHover(0)}
@@ -120,9 +162,17 @@ export default function AddProduct() {
             </div>
           </div>
 
-          <input type="text" placeholder="Tags (comma separated)" {...register("tags")} className="w-full border px-4 py-2 rounded-lg focus:ring-2 focus:ring-blue-400" />
+          <input
+            type="text"
+            placeholder="Tags (comma separated)"
+            {...register("tags")}
+            className="w-full border px-4 py-2 rounded-lg focus:ring-2 focus:ring-blue-400"
+          />
 
-          <button type="submit" className="w-full bg-blue-600 text-white py-3 rounded-xl hover:bg-blue-700 transition text-lg font-semibold">
+          <button
+            type="submit"
+            className="w-full bg-blue-600 text-white py-3 rounded-xl hover:bg-blue-700 transition text-lg font-semibold"
+          >
             Add Product
           </button>
         </form>

@@ -12,7 +12,7 @@ import {
   signOut,
 } from "firebase/auth";
 import { auth } from "../lib/fibase.init";
-import Loading from "@/Components/Loading";
+import Loading from "@/components/Loading";
 
 const googleProvider = new GoogleAuthProvider();
 
@@ -80,8 +80,8 @@ export default function AuthProvider({ children }) {
     return () => unSubscribe();
   }, []);
 
-  if(loading){
-    return <Loading/>
+  if (loading) {
+    return <Loading />;
   }
 
   return <AuthContext value={authInfo}>{children}</AuthContext>;

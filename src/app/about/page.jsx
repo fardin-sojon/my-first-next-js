@@ -1,6 +1,6 @@
 "use client";
 
-import TeamMember from "@/Components/TeamMember";
+import TeamMember from "@/components/TeamMember";
 import Image from "next/image";
 import React from "react";
 
@@ -38,17 +38,17 @@ export default function About() {
         {/* Right Image Box */}
         <div className=" h-64 md:h-80 rounded-2xl shadow-lg flex items-center justify-center overflow-hidden">
           <Image
-            src="/images/about.png" 
+            src="/images/about.png"
             alt="Banner"
-            width={800} 
-            height={400} 
+            width={800}
+            height={400}
             className="object-cover rounded-2xl"
           />
         </div>
       </section>
       {/* Our Team */}
       <section>
-        <TeamMember/>
+        <TeamMember />
       </section>
     </div>
   );

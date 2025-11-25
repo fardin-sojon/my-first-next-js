@@ -1,10 +1,10 @@
 "use client";
-import Protected from "@/Components/Protected";
+import Protected from "@/components/Protected";
 import React, { useEffect, useState } from "react";
 import useAuth from "@/app/hooks/useAuth";
 import Link from "next/link";
 import { Trash2, Eye, LayoutGrid, Table } from "lucide-react";
-import Loading from "@/Components/Loading";
+import Loading from "@/components/Loading";
 import Swal from "sweetalert2";
 import Image from "next/image";
 
@@ -12,7 +12,7 @@ export default function ManageProduct() {
   const { user } = useAuth();
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [view, setView] = useState("table"); 
+  const [view, setView] = useState("table");
 
   // Fetching
   const fetchProducts = async () => {
@@ -27,7 +27,7 @@ export default function ManageProduct() {
     }
   };
 
-  // DELETE 
+  // DELETE
   const handleDelete = async (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -55,11 +55,11 @@ export default function ManageProduct() {
 
   useEffect(() => {
     fetchProducts();
-  }, [user,fetchProducts]);
+  }, [user]);
 
   if (loading) return <Loading />;
   if (!products.length)
-    return <p className="text-center py-10">No products found.</p>;
+    return <p className="text-center text-2xl font-bold py-10">No products found.</p>;
 
   return (
     <Protected>
