@@ -5,6 +5,8 @@ import Image from "next/image";
 import React from "react";
 
 export default function About() {
+
+
   return (
     <div className="container mx-auto py-14 px-5 space-y-20">
       {/* Our Company */}

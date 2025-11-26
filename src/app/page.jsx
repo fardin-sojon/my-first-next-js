@@ -1,5 +1,6 @@
 "use client";
 
+import Loading from "@/components/Loading";
 import Banner from "../components/Banner";
 import Features from "../components/Features";
 import ProductCard from "../components/ProductCard";
@@ -18,11 +19,7 @@ export default function Home() {
   }, []);
 
   if (loading) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <p className="text-gray-500 text-xl">Loading products...</p>
-      </div>
-    );
+    return <Loading/>
   }
 
   return (
