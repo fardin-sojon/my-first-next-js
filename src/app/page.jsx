@@ -5,6 +5,8 @@ import Banner from "../components/Banner";
 import Features from "../components/Features";
 import ProductCard from "../components/ProductCard";
 import { useEffect, useState } from "react";
+import Gallery from "@/components/Gallery";
+import Newsletter from "@/components/NewsLetter";
 
 export default function Home() {
   const [products, setProducts] = useState([]);
@@ -27,7 +29,7 @@ export default function Home() {
       <main className="container mx-auto space-y-8">
         <Banner />
         <section className="py-16 px-8">
-          <h2 className="text-3xl font-bold mb-10 text-left">
+          <h2 className="text-3xl font-bold mb-10 text-center">
             Latest Products
           </h2>
           <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
@@ -43,6 +45,8 @@ export default function Home() {
           </div>
         </section>
         <Features />
+        <Gallery/>
+        <Newsletter/>
       </main>
     </div>
   );

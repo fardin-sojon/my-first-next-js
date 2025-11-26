@@ -6,23 +6,23 @@ const features = [
   {
     title: "Quality Products",
     desc: "Our items are selected and tested to ensure premium quality every time.",
-    icon: <FaCheckCircle className="text-indigo-700 w-10 h-10 mb-4 mx-auto md:mx-0" />,
+    icon: <FaCheckCircle className="text-blue-600 w-10 h-10 mb-4 mx-auto md:mx-0" />,
   },
   {
     title: "Fast Delivery",
     desc: "We make sure your order reaches you quickly and safely.",
-    icon: <FaShippingFast className="text-indigo-700 w-10 h-10 mb-4 mx-auto md:mx-0" />,
+    icon: <FaShippingFast className="text-blue-600 w-10 h-10 mb-4 mx-auto md:mx-0" />,
   },
   {
     title: "Trusted Support",
     desc: "Our support team is active 24/7 to help with any issues.",
-    icon: <FaHeadset className="text-indigo-700 w-10 h-10 mb-4 mx-auto md:mx-0" />,
+    icon: <FaHeadset className="text-blue-600 w-10 h-10 mb-4 mx-auto md:mx-0" />,
   },
 ];
 
 export default function Features() {
   return (
-    <section className="py-10">
+    <section className="pb-5">
       <div className="container mx-auto px-5 text-center">
         <h2 className="text-4xl font-bold mb-12 text-gray-800">Why Choose Us?</h2>
 
@@ -33,7 +33,7 @@ export default function Features() {
               className="p-8 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition transform hover:-translate-y-2 flex flex-col items-center"
             >
               {feature.icon}
-              <h3 className="text-2xl font-semibold mb-4 text-indigo-700">
+              <h3 className="text-2xl font-semibold mb-4 text-blue-600">
                 {feature.title}
               </h3>
               <p className="text-gray-600 leading-relaxed">{feature.desc}</p>
