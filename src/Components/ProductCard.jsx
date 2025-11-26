@@ -2,15 +2,15 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function ProductCard({ product }) {
+  const imageUrl =
+    product.image && product.image.startsWith("http")
+      ? product.image
+      : "/fallback.png"; 
+
   return (
     <div className="rounded-lg shadow-lg hover:shadow-2xl transition bg-white overflow-hidden p-5">
       <div className="relative w-full h-54">
-        <Image
-          src={product.image}
-          alt={product.title}
-          fill
-          className="object-cover"
-        />
+        <Image src={imageUrl} alt={product.title} fill className="object-cover" />
       </div>
       <div className="p-4">
         <h3 className="text-xl font-semibold mb-1">{product.title}</h3>

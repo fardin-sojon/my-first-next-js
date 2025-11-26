@@ -5,17 +5,18 @@ import Loading from "./Loading";
 import useAuth from "@/app/hooks/useAuth";
 
 export default function Protected({ children }) {
-  const { user, loading } = useAuth(); 
+  const { user, loading } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
     if (!loading && !user) {
-      router.push("/login");
+      const redirectUrl = encodeURIComponent(window.location.pathname + window.location.search);
+      router.replace(`/login?redirect=${redirectUrl}`);
     }
   }, [loading, user, router]);
 
   if (loading) return <Loading />;
-  if (!user) return null;
+  if (!user) return null; 
 
   return <>{children}</>;
 }

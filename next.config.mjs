@@ -4,9 +4,9 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: '**',    // যেকোনো host
-        port: '',          // empty
-        pathname: '/**',   // যেকোনো path
+        hostname: '**',    
+        port: '',         
+        pathname: '/**', 
       },
     ],
   },

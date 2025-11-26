@@ -1,16 +1,18 @@
-"use client";
+'use client';
 
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
 
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import useAuth from "../hooks/useAuth";
 import toast from "react-hot-toast";
 
 export default function LoginForm() {
   const { loginUser, googleLogin } = useAuth();
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirect = searchParams.get("redirect") || "/"; // আগের পেজ ধরবে
 
   const {
     register,
@@ -22,11 +24,9 @@ export default function LoginForm() {
   const onSubmit = async (data) => {
     try {
       const { email, password } = data;
-
-      const result = await loginUser(email, password);
-
+      await loginUser(email, password);
       toast.success("Login Successful!");
-      router.push("/"); 
+      router.push(redirect); // আগের পেজে পাঠাবে
     } catch (error) {
       toast.error(error.message);
     }
@@ -37,7 +37,7 @@ export default function LoginForm() {
     try {
       await googleLogin();
       toast.success("Google Login Successful!");
-      router.push("/");
+      router.push(redirect); // আগের পেজে পাঠাবে
     } catch (error) {
       toast.error(error.message);
     }
@@ -110,7 +110,7 @@ export default function LoginForm() {
         <p className="text-center text-gray-500 mt-6">
           Don't have an account?{" "}
           <Link
-            href="/register"
+            href={`/register${redirect !== "/" ? `?redirect=${encodeURIComponent(redirect)}` : ""}`}
             className="text-blue-600 font-medium hover:underline"
           >
             Register

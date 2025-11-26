@@ -1,19 +1,29 @@
 "use client";
 
 import Banner from "../components/Banner";
-import Features from "../components//Features";
+import Features from "../components/Features";
 import ProductCard from "../components/ProductCard";
 import { useEffect, useState } from "react";
 
 export default function Home() {
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch("/api/items?latest=3")
       .then((res) => res.json())
       .then((data) => setProducts(data))
-      .catch((err) => console.error("Failed to fetch products:", err));
+      .catch((err) => console.error("Failed to fetch products:", err))
+      .finally(() => setLoading(false));
   }, []);
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <p className="text-gray-500 text-xl">Loading products...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="h-full font-sans">
@@ -24,9 +34,15 @@ export default function Home() {
             Latest Products
           </h2>
           <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
-            {products.map((product) => (
-              <ProductCard key={product._id} product={product} />
-            ))}
+            {products.length > 0 ? (
+              products.map((product) => (
+                <ProductCard key={product._id} product={product} />
+              ))
+            ) : (
+              <p className="text-gray-500 col-span-full text-center">
+                No products found.
+              </p>
+            )}
           </div>
         </section>
         <Features />
