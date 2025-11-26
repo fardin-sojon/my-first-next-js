@@ -2,18 +2,28 @@
 
 import { useEffect, useState } from "react";
 import ProductCard from "@/components/ProductCard";
+import Loading from "@/components/Loading";
+import useAuth from "../hooks/useAuth";
 
 export default function ItemsPage() {
   const [products, setProducts] = useState([]);
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("all");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch("/api/items")
       .then((res) => res.json())
-      .then((data) => setProducts(data))
+      .then((data) => {
+        setProducts(data)
+        setLoading(false)
+      })
       .catch((err) => console.error(err));
   }, []);
+
+  if(loading){
+    return <Loading/>
+  }
 
   const categories = ["all", ...new Set(products.map((p) => p.category))];
 
